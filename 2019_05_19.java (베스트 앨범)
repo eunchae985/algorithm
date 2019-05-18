@@ -4,14 +4,14 @@ class Solution {
     public int[] solution(String[] genres, int[] plays) {
         int max_plays = 0;
         int answer_i = 0;
-        ArrayList<Integer> answerList = new ArrayList<>();
-        ArrayList<Integer> playList = new ArrayList<>();
-        ArrayList<String> genresList = new ArrayList<>();
+        ArrayList<Integer> answerList = new ArrayList<>(); //정답 리스트
+        ArrayList<Integer> playList = new ArrayList<>(); //재생수 리스트
+        ArrayList<String> genresList = new ArrayList<>(); //장르 리스트
         for (int i = 0; i < plays.length; i++) {
-            playList.add(plays[i]);
+            playList.add(plays[i]); // 배열 to 리스트
         }
         for (int i = 0; i < genres.length; i++) {
-            genresList.add(genres[i]);
+            genresList.add(genres[i]); //배열 to 리스트
         }
         
         // 장르별 재생수 합친거 구하기
@@ -24,18 +24,19 @@ class Solution {
             }        
         }
         
+        // 내림 차순 정렬
         ValueComparator bvc =  new ValueComparator(playListMap);
         TreeMap<String,Integer> sorted_map = new TreeMap<String,Integer>(bvc);
- 
         sorted_map.putAll(playListMap);
+        
          String present_genres = "";
         int same = -1;
         for (Map.Entry<String,Integer> entry : sorted_map.entrySet()) {
             int put = 0;
-            present_genres = entry.getKey();
+            present_genres = entry.getKey(); //현재 선택된 장르
             
            while(true){
-               if(put==2){
+               if(put==2){ //2개 들어갔으면 
                    break;
                }
             if(put == 1){
