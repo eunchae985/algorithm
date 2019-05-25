@@ -1,0 +1,154 @@
+import java.util.*;
+
+class Solution {
+
+    public long solution(int n, int[] works) {
+
+        long answer = 0;
+        
+        while(n!=0){
+	        Arrays.sort(works);
+          if(works[works.length-1] == 0){
+                break;
+          }
+
+      	works[works.length-1] = works[works.length-1] -1;
+
+	      n--;
+
+      }
+
+
+        /*Arrays.sort(works);
+
+        int sum = 0;
+
+        int avg = 0;
+
+        
+
+        while(n!=0){
+
+           // 평균구하기
+
+          sum = 0;
+
+           for(int i=0; i<works.length; i++){
+
+             // System.out.println(works[i]);
+
+              sum = sum + works[i];
+
+           }
+            avg = sum / works.length;
+
+            //System.out.println("avg : "+avg);
+
+            //System.out.println("n : "+n);
+
+            //System.out.println("-----------------------");
+
+
+            // 가장 큰수 - 평균값이 배열이 n보다 큰 경우
+
+            if(works[works.length-1] - avg > n){
+
+            	works[works.length-1] = works[works.length-1] - n;
+
+                break;
+
+            }
+
+            int bigger_avg = 0;
+
+            // 배열에 평균보다 큰값이 있는지 확인
+
+            for(int j=0; j<works.length; j++){
+
+                if(works[j] > avg){
+
+                    bigger_avg++;
+
+                    break;
+
+                }
+
+            }
+
+
+            // 배열의 값들이 모두 0인지 확인
+
+            int works_sum_0_check = 0;
+
+            for(int j=0; j<works.length; j++){
+
+                   works_sum_0_check =  works_sum_0_check+works[j];
+
+            }
+
+            if(works_sum_0_check == 0){
+
+                n = 0;
+
+                break;
+
+            }
+           for(int i=works.length-1; i>=0; i--){
+
+               int save_works = works[i];
+
+               if(bigger_avg > 0){
+
+                   if(works[i] > avg){
+
+                        works[i] = avg;
+
+                        n = n-(save_works-avg);
+
+                        if(n==0){
+
+                            break;
+
+                        }
+
+                    }
+
+                }else{
+
+                   if(works[i] == 0){
+
+                        continue;
+
+                    }else{
+
+                        works[i] = works[i] - 1;
+
+                         n = n-1;
+
+                         if(n==0){
+
+                             break;
+
+                         }
+
+                    }
+
+                }
+            }
+
+            Arrays.sort(works);
+
+        }*/       
+
+       for(int i=0; i<works.length; i++){
+
+           System.out.print(works[i]+"\t");
+
+           answer = answer+works[i] * works[i];
+
+        }
+        return answer;
+
+    }
+
+}
