@@ -1,0 +1,33 @@
+class Solution
+{
+    public int solution(String s)
+    {
+        int answer = 0;
+        char[] c = s.toCharArray();
+        char[] r_c;
+        int i = 0;
+        String s_sum = "";
+        String r_s = "";
+        while(true){
+            if(i == c.length){
+                break;
+            }
+            s_sum =  "";
+            for(int j=i; j<c.length; j++){
+                r_s = "";
+                s_sum = s_sum + c[j];
+                r_c = s_sum.toCharArray();
+                for(int k=r_c.length-1; k>=0; k--){
+                    r_s = r_s + r_c[k];
+                }
+                if(s_sum.equals(r_s) && answer < r_c.length){
+                    answer = r_c.length;
+                }
+                
+            }
+            i++;
+        }
+        
+        return answer;
+    }
+}
