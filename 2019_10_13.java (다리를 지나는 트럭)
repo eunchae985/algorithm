@@ -1,0 +1,37 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int bridge_length, int weight, int[] truck_weights) {
+        int answer = 1;
+        LinkedList<Integer> truck = new LinkedList<Integer>();
+        LinkedList<Integer> truck_idx = new LinkedList<Integer>();
+        for(int i=0; i<truck_weights.length; i++){
+            truck.addLast(truck_weights[i]);
+            truck_idx.addLast(0);
+        }
+        
+        while(!truck_idx.isEmpty()){
+            if(truck_idx.get(0) == 0){
+               truck_idx.set(0, truck_idx.get(0)+1);
+                answer++;
+                continue;
+            }else{
+                int truck_sum = 0;
+               for(int i=0; i<truck.size(); i++){
+                   truck_sum = truck_sum+truck.get(i);
+                   if(truck_sum > weight){
+                       break;
+                   }
+                   truck_idx.set(i, truck_idx.get(i)+1);
+               } 
+            }
+            answer++;
+            if(truck_idx.get(0) >= bridge_length){
+                truck_idx.remove(0);
+                truck.remove(0);
+            }
+        }
+        
+        return answer;
+    }
+}
