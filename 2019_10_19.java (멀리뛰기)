@@ -1,4 +1,4 @@
-/* 피보나치 */
+/* 피보나치 수열 이용 */
 
 class Solution {
   public long solution(int n) {
