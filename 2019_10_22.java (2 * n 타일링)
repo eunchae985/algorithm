@@ -1,0 +1,19 @@
+class Solution {
+  public int solution(int n) {
+      int answer = 0;
+      int one = 1;
+      int two = 1;
+      
+      if(n==1){
+        answer = 1;
+      }else{
+          for(int i=0; i<n-1; i++){
+              answer = (one+two)% 1000000007;    
+              one = two;
+              two = answer;
+          }
+      }
+      
+      return answer;
+  }
+}
