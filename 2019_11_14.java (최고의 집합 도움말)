@@ -1,0 +1,28 @@
+class Solution {
+  public int[] solution(int n, int s) {
+      int[] answer = new int[n];
+      
+      if(n <= s){
+          int division = s/n;
+          int mod = s%n;
+          if(mod == 0){
+             for(int i=0; i<n; i++){
+                 answer[i] = division;
+             }
+          }else{
+              for(int i=0; i<n-mod; i++){
+                  answer[i] = division;
+              }
+              for(int i=n-mod; i<n; i++){
+                  answer[i] = division+1;
+              }
+          }
+          
+      }else{
+          answer = new int[1];
+          answer[0] = -1;
+      }
+      
+      return answer;
+  }
+}
