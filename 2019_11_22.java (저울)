@@ -1,0 +1,92 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int[] weight) {
+        int answer = 1; 
+        //int n = 0;
+        //int repeat_y = 0;
+        
+        Arrays.sort(weight);
+        for(int j=0; j<weight.length; j++){
+            if(answer < weight[j]){
+                answer = answer;
+                break;
+            }
+            answer = answer+weight[j];
+        }
+        /*
+        방법1 - 시간 초과
+        ArrayList<Integer> weightList = new ArrayList<>();
+        for(Integer temp : weight){
+            weightList.add(temp);
+        }
+        Collections.reverse(weightList);
+        if(1 < weightList.get(weightList.size()-1)){
+           answer = 1;
+        }else{
+            while(true){
+                repeat_y = 0;
+                n_cp = n;
+                for(int i=0; i<weightList.size(); i++){
+                    if(weightList.get(i) > n){
+                        continue;
+                    }
+                    if(weightList.get(i) > n_cp){
+                        continue;
+                    }
+                    if(weightList.get(i) == n){
+                        repeat_y = 1;
+                        break;
+                    }
+                    n_cp = n_cp - weightList.get(i);
+                    if(n_cp == 0){
+                        repeat_y = 1;
+                        break;
+                    }
+                }
+
+                if(repeat_y == 0){
+                    answer = n;
+                    break;
+                }
+                n++;
+            }
+        }*/
+        
+        /* 방법 2 - 시간초과
+        ArrayList<Integer> weightList = new ArrayList<>();
+        for(Integer temp : weight){
+            weightList.add(temp);
+        }
+        Collections.reverse(weightList);
+        
+        for(int j=0; j<weight.length; j++){
+            answer = answer+weight[j];
+            n = answer+1;
+            repeat_y = 0;
+            for(int i=0; i<weightList.size(); i++){
+                if(weightList.get(i) > answer+1){
+                    continue;
+                }
+                if(weightList.get(i) > n){
+                    continue;
+                }
+                if(weightList.get(i) == answer+1){
+                    repeat_y = 1;
+                    break;
+                }
+                n = n - weightList.get(i);
+                if(n == 0){
+                    repeat_y = 1;
+                    break;
+                }
+            }
+            if(repeat_y == 0){
+                answer = answer+1;
+                break;
+            }
+        }*/
+        
+        return answer;
+    }
+}
