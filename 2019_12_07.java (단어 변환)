@@ -1,0 +1,61 @@
+import java.util.*;
+class Solution {
+    public int solution(String begin, String target, String[] words) {
+        int answer = 0;
+        ArrayList<String> wordsList = new ArrayList<String>(Arrays.asList(words));
+        String compare_word = begin;
+        int compare_cnt = 0;
+        int end = 0;
+        int list_size = 0;
+        String[] target_split = target.split("");
+        while(wordsList.contains(target)){
+            if(wordsList.size() == 0){
+                answer = 0;
+                break;
+            }
+            String[] compare_word_split = compare_word.split("");
+            list_size = wordsList.size();
+            int i = 0;
+            while(true){
+                if(i == wordsList.size()){
+                    break;
+                }
+                compare_cnt = 0;
+                end = 0;
+                String[] current_word_split = wordsList.get(i).split("");
+                for(int j=0; j<compare_word_split.length; j++){
+                    if(compare_word_split[j].equals(current_word_split[j])){
+                        compare_cnt++;
+                    }
+                }
+                if(compare_cnt == compare_word_split.length-1){
+                	compare_cnt = 0;
+                    for(int j=0; j<target_split.length; j++){
+                        if(target_split[j].equals(current_word_split[j])){
+                            compare_cnt++;
+                        }
+                    }
+                    if(compare_cnt == target_split.length-1){
+                       answer+=2;
+                        end = 1;
+                        break;
+                    }
+                    compare_word = wordsList.get(i);
+                    wordsList.remove(i);
+                    answer++;
+                }else{
+                    i++;
+                }
+            }
+            if(end == 1){
+                break;
+            }else if(list_size == wordsList.size()){
+                answer = 0;
+                break;
+            }
+            
+        } 
+        
+        return answer;
+    }
+}
