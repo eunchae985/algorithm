@@ -1,0 +1,77 @@
+//1,2 테스트 케이스 통과를 못함
+
+import java.util.*;
+class Solution {
+    
+    public ArrayList<String> answer(int startIdx, ArrayList<String[]> ticketsArrayList){
+       ArrayList<String[]> ticketsList = new ArrayList<String[]>();
+       ArrayList<String> answerList = new ArrayList<String>();
+       ticketsList.addAll(ticketsArrayList);
+       String arrival = ticketsList.get(startIdx)[1];
+       answerList.add(arrival);
+       ticketsList.remove(startIdx);
+       int answerIdx = 0;
+        
+        while(ticketsList.size() > 0){
+            startIdx = -1;
+        	for(int i=0; i<ticketsList.size(); i++){
+                if(ticketsList.get(i)[0].equals(arrival)){
+                    if(startIdx == -1){
+                        startIdx = i;
+                    }else if(arrival.compareTo(ticketsList.get(i)[0]) > 0){
+                    	startIdx = i;
+                    }
+                }
+            }
+            if(startIdx == -1){
+                break;
+            }
+            arrival = ticketsList.get(startIdx)[1];
+            answerList.add(arrival);
+            ticketsList.remove(startIdx);
+            answerIdx++;
+        }
+        return answerList;
+    }
+    public String[] solution(String[][] tickets) {
+        ArrayList<String[]> ticketsList = new ArrayList<String[]>();
+        String[] answer = new String[tickets.length+1];
+        answer[0] = "ICN";
+        int answerIdx = 1;
+        int startIdx = 0;
+        ArrayList<Integer> icnIdx = new ArrayList<Integer>();
+        String arrival = "";
+        
+        for(int i=0; i<tickets.length; i++){
+            ticketsList.add(new String[]{tickets[i][0], tickets[i][1]});
+            if(ticketsList.get(i)[0].equals("ICN")){
+                if(arrival.equals("")){
+                    arrival = ticketsList.get(i)[1];	
+                    startIdx = i;
+                    icnIdx.add(startIdx);
+                }else{
+                    if(arrival.compareTo(ticketsList.get(i)[1]) > 0){
+                        arrival = ticketsList.get(i)[1];	
+                    	startIdx = i;
+                        icnIdx.add(startIdx);
+                    }
+                }
+            }
+        }
+        ArrayList<String> answerList  = new ArrayList<String> ();
+        answerList = answer(startIdx, ticketsList);
+        if(answerList.size() != tickets.length){
+             while(true){
+                 icnIdx.remove(new Integer(startIdx));
+                 answerList = answer(icnIdx.get(0), ticketsList);
+                 if(answerList.size() == tickets.length){
+                 	break;
+                 }
+             }
+         }
+        for(int i=0; i<answerList.size(); i++){
+            answer[i+1] = answerList.get(i);
+        }
+        return answer;
+    }
+}
