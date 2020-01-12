@@ -1,0 +1,39 @@
+import java.util.*;
+
+class Solution {
+    public int solution(String skill, String[] skill_trees) {
+        int answer = 0;
+        String[] skillSplit = skill.split("");
+        int skillCnt = 0; 
+        int skillOk = 0;
+        
+        for(int i=0; i<skill_trees.length; i++){
+            String[] skillTreeSplit = skill_trees[i].split("");
+            ArrayList<String> skillList = new ArrayList<>();
+            for(int j=0; j<skillTreeSplit.length; j++){
+                if(skill.indexOf(skillTreeSplit[j]) > -1){
+                    skillList.add(skillTreeSplit[j]);
+                }
+            }
+            if(skillList.size() == 0){
+                answer++;
+            }else{
+                skillCnt = 0;
+                skillOk = 0;
+                for(int j=0; j<skillList.size(); j++){
+                    if(skillList.get(j).equals(skillSplit[skillCnt])){
+                        skillCnt++;
+                    }else{
+                        skillOk = 1;
+                        break;
+                    }
+                }
+                if(skillOk == 0){
+                    answer++;
+                }
+            }
+        }
+        
+        return answer;
+    }
+}
