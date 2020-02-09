@@ -1,0 +1,98 @@
+import java.util.*;
+class Solution {
+    public int solution(int[][] triangle) {
+        int answer = 0;
+        int answerTriangle[][] = new int[triangle.length][triangle.length];
+        answerTriangle[0][0] = triangle[0][0];
+        
+        // 배열에 양 끝을 더한 값들을 저장하기
+        for(int i=1; i<triangle.length; i++){
+            answerTriangle[i][0] = answerTriangle[i - 1][0] + triangle[i][0];
+            answerTriangle[i][i] = answerTriangle[i - 1][i - 1] + triangle[i][i];
+        }
+        // 가운데 위치한 값들 더해서 대소 비교
+        for (int i = 2; i < triangle.length; i++) { //3층부터 가운데값
+            for (int j = 1; j < i; j++) {
+                // 위층의 왼쪽과 오른쪽 값중 큰 값을 골라서 현재값에 더함
+                if(answerTriangle[i-1][j-1] > answerTriangle[i-1][j]){ 
+                    answerTriangle[i][j] = answerTriangle[i-1][j-1] + triangle[i][j];
+                }else{
+                    answerTriangle[i][j] = answerTriangle[i-1][j] + triangle[i][j];
+                }
+            }
+        }
+        
+        // 마지막 줄에서 가장 큰 값
+        for(int i=0; i<answerTriangle.length; i++){
+            if(answer < answerTriangle[answerTriangle.length-1][i]){
+                answer = answerTriangle[answerTriangle.length-1][i];
+            }
+        }
+        
+      /*int nowValue = 0;
+        int maxValue = 0;
+        int subValue = 0;
+        int for_i = 1;
+        int idx = 0;
+        int idx_2 = 0;
+        int cnt = 0;
+        // 더하는 법
+        subValue = triangle[triangle.length-1][0];
+        // 0+0+0+0+0
+        for(int i=0; i<triangle.length; i++){
+            maxValue += triangle[i][0];
+        }
+        nowValue = maxValue - subValue;
+        while(true){
+            if(cnt == triangle.length-1){
+                break;
+            }
+            idx++;
+            for(int i=triangle.length-1; i>=for_i; i--){
+            	nowValue = nowValue+triangle[i][idx];
+                subValue = triangle[i-1][idx-1];
+                if(nowValue > maxValue){
+                    maxValue = nowValue;
+                }
+                nowValue -= subValue;
+            }
+            for_i++;
+            cnt++;
+        }
+        // 빼는 법
+        subValue = triangle[triangle.length-1][triangle.length-1];
+        nowValue = 0;
+        // 0+1+2+3+4
+        for(int i=0; i<triangle.length; i++){
+            nowValue += triangle[i][i];
+        }
+        if(nowValue > maxValue){
+            maxValue = nowValue;
+        }
+        nowValue = nowValue - subValue;
+        idx = triangle.length-2;
+        cnt = 0;
+        for_i = 1;
+        while(true){
+            if(cnt == triangle.length-1){
+                break;
+            }
+           
+           	idx_2 = idx;
+            for(int i=triangle.length-1; i>=for_i; i--){
+            	nowValue = nowValue+triangle[i][idx_2];
+                subValue = triangle[i-1][idx_2];
+                if(nowValue > maxValue){
+                    maxValue = nowValue;
+                }
+                nowValue -= subValue;
+                idx_2--;
+            }
+            cnt++;
+            for_i++;
+            idx--;
+        }*/
+        
+        return answer;
+    }
+}
