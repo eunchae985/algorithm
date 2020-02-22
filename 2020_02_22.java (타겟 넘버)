@@ -1,0 +1,22 @@
+import java.util.*;
+
+class Solution {
+    static int answer = 0;
+    public void DFS(int count, int num, int[] numbers, int target){
+        if(count == numbers.length){
+            if(num == target){
+                answer++;
+                return;
+            }else{
+                return;
+            }
+        }
+        
+        DFS(count+1, num+numbers[count], numbers, target);
+        DFS(count+1, num-numbers[count], numbers, target);
+    }
+    public int solution(int[] numbers, int target) {
+        DFS(0, 0, numbers, target);
+        return answer;
+    }
+}
