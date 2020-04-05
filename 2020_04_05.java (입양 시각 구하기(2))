@@ -1,0 +1,24 @@
+SELECT hour(DATETIME) as 'HOUR', count(*) as 'COUNT' FROM ANIMAL_OUTS group by HOUR
+union 
+select 0 as 'HOUR', 0 as 'COUNT' from ANIMAL_OUTS
+union 
+select 1 as 'HOUR', 0 as 'COUNT' from ANIMAL_OUTS
+union 
+select 2 as 'HOUR', 0 as 'COUNT' from ANIMAL_OUTS
+union 
+select 3 as 'HOUR', 0 as 'COUNT' from ANIMAL_OUTS
+union 
+select 4 as 'HOUR', 0 as 'COUNT' from ANIMAL_OUTS
+union 
+select 5 as 'HOUR', 0 as 'COUNT' from ANIMAL_OUTS
+union 
+select 6 as 'HOUR', 0 as 'COUNT' from ANIMAL_OUTS
+union 
+select 20 as 'HOUR', 0 as 'COUNT' from ANIMAL_OUTS
+union 
+select 21 as 'HOUR', 0 as 'COUNT' from ANIMAL_OUTS
+union 
+select 22 as 'HOUR', 0 as 'COUNT' from ANIMAL_OUTS
+union 
+select 23 as 'HOUR', 0 as 'COUNT' from ANIMAL_OUTS
+order by HOUR
