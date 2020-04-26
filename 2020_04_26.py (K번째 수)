@@ -1,0 +1,11 @@
+def solution(array, commands):
+    answer = []
+   
+    for i in range(0, len(commands), 1):
+        array_arr = []
+        for j in range(commands[i][0]-1, commands[i][1]):
+          array_arr.append(array[j])
+        array_arr.sort()
+        answer.append(array_arr[commands[i][2]-1])
+        
+    return answer
