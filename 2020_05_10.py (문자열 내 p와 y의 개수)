@@ -1,0 +1,14 @@
+def solution(s):
+    answer = True
+    y = 0
+    p = 0
+    for c in s :
+        if(c == 'p' or c == 'P') :
+            p = p+1
+        elif(c == 'y' or c == 'Y') :
+            y = y+1
+      
+    if( y != p) :
+        answer = False
+
+    return answer
