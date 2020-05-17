@@ -1,0 +1,24 @@
+def solution(progresses, speeds):
+    answer = []
+    day = []
+    cnt = 0
+    day_cnt = 1
+    
+    for i in progresses :
+        day.append((100-i) // speeds[cnt])
+        cnt = cnt+1
+    
+    current_day = day[0]
+    day = day[1:len(day)]
+    
+    for i in day :
+        if(current_day >= i):
+            day_cnt = day_cnt+1
+        else:
+            answer.append(day_cnt)
+            day_cnt = 1
+            current_day = i
+            
+    answer.append(day_cnt)
+        
+    return answer
