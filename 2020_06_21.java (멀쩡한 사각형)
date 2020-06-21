@@ -1,0 +1,30 @@
+import java.util.*;
+import java.math.*;
+
+class Solution {
+    public long solution(int w, int h) {
+        long answer = (long)w*(long)h;
+        long gcd_w = (long)w;
+        long gcd_h = (long)h;
+        if(w==h){
+            answer = answer - w;
+        }else{
+            /*if(w<h){
+                answer = answer - w*2;
+            }else{
+                answer = answer - h*2;
+            }*/
+            long temp = 0;
+            while(gcd_w != 0) {
+				if(gcd_w < gcd_h) {
+					temp = gcd_w;
+					gcd_w = gcd_h;
+					gcd_h = temp;
+				}
+				gcd_w = gcd_w%gcd_h;
+			}
+            answer = (long)answer-((long)w+(long)h-gcd_h);
+        }
+        return answer;
+    }
+}
