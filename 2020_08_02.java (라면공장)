@@ -1,0 +1,26 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int stock, int[] dates, int[] supplies, int k) {
+        int answer = 0;
+        int dates_i = 0;
+        ArrayList suppliesList = new ArrayList(); 
+        
+        for(int i=1; i<k; i++){
+            stock--;
+            if((dates_i <= dates.length-1) && (i == dates[dates_i])){
+                suppliesList.add(supplies[dates_i]);
+                Collections.sort(suppliesList);
+                Collections.reverse(suppliesList);
+                dates_i++;
+            }
+            if(stock==0){
+                 stock += (int)suppliesList.get(0);  
+                 answer++;
+                 suppliesList.remove(0);
+            }
+        }
+        
+        return answer;
+    }
+}
